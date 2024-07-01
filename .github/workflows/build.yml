@@ -13,7 +13,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - name: Fix permissions
+        run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE && sudo chmod -R 755 $GITHUB_WORKSPACE
 
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y libffi-dev libssl-dev
@@ -25,7 +28,7 @@ jobs:
           pip install --upgrade pip
           pip install buildozer
           buildozer android debug
-
+     
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
