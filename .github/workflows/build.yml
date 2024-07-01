@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Ensuring we use the latest version
 
       - name: Fix permissions
         run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE && sudo chmod -R 755 $GITHUB_WORKSPACE
@@ -30,7 +30,7 @@ jobs:
           buildozer android debug
      
       - name: Upload APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Ensuring we use the latest version
         with:
           name: MyApp
           path: bin/*.apk
